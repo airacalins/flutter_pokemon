@@ -1,9 +1,10 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:ffuf_20220608_pokeke/models/pokemon/pokemon.dart';
 
 class HomeScreenViewModel extends Vm {
   HomeScreenViewModel({
-    required this.names,
-  }) : super(equals: [names]);
+    required this.pokemons,
+  }) : super(equals: [pokemons]);
 
-  final List<String> names;
+  final List<Pokemon> pokemons;
 }

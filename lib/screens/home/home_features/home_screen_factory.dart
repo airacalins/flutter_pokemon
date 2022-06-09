@@ -9,6 +9,6 @@ class HomeScreenFactory extends VmFactory<AppState, HomeScreen> {
 
   @override
   Vm? fromStore() {
-    return HomeScreenViewModel(names: state.names);
+    return HomeScreenViewModel(pokemons: state.pokemons);
   }
 }

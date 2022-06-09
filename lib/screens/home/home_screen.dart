@@ -16,9 +16,9 @@ class HomeScreen extends StatelessWidget {
       builder: (context, vm) => Scaffold(
         appBar: AppBar(title: const Text('Pokeke')),
         body: ListView.builder(
-          itemCount: vm.names.length,
+          itemCount: vm.pokemons.length,
           itemBuilder: (context, index) =>
-              ListTile(title: Text(vm.names[index])),
+              ListTile(title: Text(vm.pokemons[index].name)),
         ),
       ),
     );

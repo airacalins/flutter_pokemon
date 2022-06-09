@@ -1,26 +1,28 @@
 import 'package:dio/dio.dart';
+import 'package:ffuf_20220608_pokeke/models/pokemon/pokemon.dart';
 
 class PokemonsHandler {
-  final pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon?limit=1126';
+  final _pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';
+  final _pokemons = List<Pokemon>.empty(growable: true);
+
+  List<Pokemon> get pokemons => _pokemons;
+
   final Dio dio = Dio();
 
-  Future<List<String>> fetchPokemons() async {
-    final pokemons = List<String>.empty(growable: true);
-
+  Future<void> fetchPokemons() async {
     try {
-      final response = await dio.get(pokemonsUrl);
+      final response = await dio.get(_pokemonsUrl);
 
       if (response.statusCode == 200) {
         final data = response.data['results'];
 
-        print(data);
-
-        for (var item in data) {
-          pokemons.add(item['name']);
+        for (var pokemon in data) {
+          _pokemons.add(Pokemon(
+            name: pokemon['name'],
+            abilityUrl: pokemon['url'],
+          ));
         }
-        return pokemons;
       }
     } on Exception catch (_) {}
-    return pokemons;
   }
 }

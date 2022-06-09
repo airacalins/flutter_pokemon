@@ -9,12 +9,11 @@ class FetchPokemons extends ReduxAction<AppState> {
   Future<AppState?> reduce() async {
     try {
       final api = PokemonsHandler();
-      final names = await api.fetchPokemons();
-      return state.copyWith(names: names);
+      await api.fetchPokemons();
+      return state.copyWith(pokemons: api.pokemons);
     } on Exception catch (e) {
       print(e);
     }
-
     return state;
   }
 }
